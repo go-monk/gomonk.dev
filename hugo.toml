@@ -9,6 +9,9 @@ theme = 'paper'
   linkedin = 'go-monk'              # linkedin.com/in/YOUR_LINKEDIN_ID
   bluesky = 'go-monk.bsky.social'   # https://bsky.app/profile/YOUR_BLUESKY_ID
 
+  favicon = "favicon.png"           # customize the default favicon
+  appleTouchIcon = "favicon.png"    # customize the default Apple touch icon
+
 [caches]
   [caches.images]
     dir = ':cacheDir/images'
