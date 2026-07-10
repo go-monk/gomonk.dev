@@ -12,3 +12,12 @@ theme = 'paper'
 [caches]
   [caches.images]
     dir = ':cacheDir/images'
+
+[params.giscus]
+  repo = 'go-monk/gomonk.dev'                 # see https://giscus.app for more details
+  repoId = 'R_kgDOTThTCg'
+  category = 'Announcements'
+  categoryId = 'DIC_kwDOTThTCs4DA6Tt'
+  mapping = 'pathname'
+  theme = 'light'
+  lang = 'en'
