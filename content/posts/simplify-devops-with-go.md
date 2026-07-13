@@ -25,7 +25,7 @@ I don't want to stop learning, that would be a mistake. I just want to avoid lea
 
 For me, that language is Go.
 
-And this site is about using Go to simplify DevOps work: writing small tools, automating repetitive tasks, building infrastructure, and replacing unnecessary complexity with simple, maintainable software.
+And this site is about using Go to simplify DevOps and infrastructure work: writing CLI tools, building systems, and replacing unnecessary complexity with simple, maintainable software.
 
 [^1]: Here, "DevOps" refers to the infrastructure and automation role. Depending on the company, it may also be called Platform Engineer, Cloud Engineer, SRE, or Sysadmin.
 [^2]: Although laziness can also be a virtue: https://bcantrill.dtrace.org/2026/04/12/the-peril-of-laziness-lost/.
