@@ -1,7 +1,6 @@
 +++
 date = '2026-07-10T12:56:53+02:00'
 title = 'Simplify DevOps with Go'
-weight = 1
 +++
 
 Look, it's simple. One of the main jobs of a DevOps[^1] engineer is to keep reducing the unnecessary complexity and bringing about clarity. And this is not simple.

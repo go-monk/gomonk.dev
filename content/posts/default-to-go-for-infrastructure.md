@@ -1,7 +1,6 @@
 +++
 date = '2026-07-13T11:25:50+02:00'
 title = 'Default to Go for infrastructure'
-weight = 1
 +++
 
 Go is not the only language I use. But it's my default language for CLI tools, infrastructure and services. I don't use other languages unless there's a good reason. Here goes why.
