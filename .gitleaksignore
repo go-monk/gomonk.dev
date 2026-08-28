@@ -1,0 +1,2 @@
+# false positive: public LinkedIn profile slug, not a client ID
+hugo.toml:linkedin-client-id:13
