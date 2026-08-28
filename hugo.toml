@@ -16,6 +16,18 @@ theme = 'paper'
   [caches.images]
     dir = ':cacheDir/images'
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[menu]
+  [[menu.main]]
+    identifier = "ebook"
+    name = "Free Ebook"
+    url = "/ebook/"
+    weight = 10
+
 [params.giscus]
   repo = 'go-monk/gomonk.dev'                 # see https://giscus.app for more details
   repoId = 'R_kgDOTThTCg'
