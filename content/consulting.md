@@ -2,12 +2,12 @@
 title = 'Consulting'
 +++
 
-I help infrastructure and DevOps teams replace unnecessary complexity — brittle Bash, ad-hoc scripts, tangled automation — with simple, maintainable Go.
+I help infrastructure, DevOps and cybersecurity teams replace unnecessary complexity — missing or tangled automation, brittle shell scripts — with simple, maintainable Go.
 
 ## What I help with
 
-- **Go tooling** — CLI tools, automation, and services built on the AWS SDK
-- **DevOps automation and CI/CD** — GitHub Actions, deployment pipelines, infrastructure tooling
+- **Go tooling** — CLI tools, automation, and services around AWS, Kubernetes and Linux
+- **Infrastructure automation and CI/CD** — GitHub Actions, deployment pipelines
 - **Security tooling and audits** — leveraging 15+ years of IT audit, sysadmin, and cybersecurity experience
 
 ## Background
