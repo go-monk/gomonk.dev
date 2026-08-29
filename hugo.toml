@@ -4,14 +4,10 @@ title = 'Go monk'
 theme = 'paper'
 
 [params]
-  name = 'Jozef Reisinger'
-  bio = 'Go for infrastructure engineers.'
-  description = 'Go, AWS, and DevOps automation, plus consulting for teams moving off Bash and ad-hoc scripts.'
-
   # header social icons
-  github = 'jreisinger'              # github.com/YOUR_GITHUB_ID
-  linkedin = 'jozefreisinger'        # linkedin.com/in/YOUR_LINKEDIN_ID
-  #bluesky = 'go-monk.bsky.social'   # https://bsky.app/profile/YOUR_BLUESKY_ID
+  github = 'go-monk'                # github.com/YOUR_GITHUB_ID
+  linkedin = 'go-monk'              # linkedin.com/in/YOUR_LINKEDIN_ID
+  bluesky = 'go-monk.bsky.social'   # https://bsky.app/profile/YOUR_BLUESKY_ID
 
   favicon = "favicon.png"           # customize the default favicon
   appleTouchIcon = "favicon.png"    # customize the default Apple touch icon
@@ -27,14 +23,9 @@ theme = 'paper'
 
 [menu]
   [[menu.main]]
-    identifier = "consulting"
-    name = "Consulting"
-    url = "/consulting/"
-    weight = 5
-  [[menu.main]]
-    identifier = "ebook"
-    name = "Free Ebook"
-    url = "/ebook/"
+    identifier = "subscribe"
+    name = "Subscribe"
+    url = "/subscribe/"
     weight = 10
 
 [params.giscus]
