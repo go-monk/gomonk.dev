@@ -4,6 +4,8 @@ title = 'Go monk'
 theme = 'paper'
 
 [params]
+  description = 'Go programming, infrastructure and security'
+
   # header social icons
   github = 'go-monk'                # github.com/YOUR_GITHUB_ID
   linkedin = 'go-monk'              # linkedin.com/in/YOUR_LINKEDIN_ID
