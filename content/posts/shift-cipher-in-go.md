@@ -1,6 +1,6 @@
 +++
 date = '2026-09-02T08:23:24+02:00'
-title = 'Shift Cipher in Go'
+title = 'Shift cipher in Go'
 +++
 
 A simple way to encipher, or encrypt, some data is by using the so-called shift cipher. We can do this in Go by going through the data byte by byte adding a key to each of the bytes.
