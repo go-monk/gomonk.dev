@@ -1,6 +1,6 @@
 +++
 date = '2026-09-02T12:12:35+02:00'
-title = 'A CLI for CloudWatch dashboards'
+title = 'Awsdash: a CLI for CloudWatch dashboards'
 draft = true
 +++
 
