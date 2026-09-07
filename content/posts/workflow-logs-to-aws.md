@@ -1,7 +1,6 @@
 +++
 date = '2026-09-02T12:05:33+02:00'
 title = 'Push GitHub Actions logs to CloudWatch'
-draft = true
 +++
 
 GitHub keeps workflow run logs for 90 days by default, then deletes them. If you need to keep them longer - for audits, incident postmortems, or just peace of mind - you have to ship them somewhere else yourself. So I wrote [workflow-logs-to-aws](https://github.com/go-monk/workflow-logs-to-aws), a small Go CLI and GitHub Action that pushes job logs from a workflow run into AWS CloudWatch Logs.
@@ -29,6 +28,8 @@ $ go install github.com/go-monk/workflow-logs-to-aws@latest
 $ workflow-logs-to-aws -repository owner/repo 123456789
 ```
 
+(`123456789` is the workflow run ID, found at the end of a run's URL: `github.com/owner/repo/actions/runs/123456789`.)
+
 or wire it into CI as an action, triggered after another workflow finishes:
 
 ```yaml
@@ -54,7 +55,7 @@ jobs:
           retention-days: 30
 ```
 
-Credentials come from whatever AWS action ran before it (no secrets baked in), and the action itself runs from a prebuilt image on GHCR, so there's no build step on every CI run.
+Credentials come from whatever AWS action ran before it (no secrets baked in) - the recommended one is `aws-actions/configure-aws-credentials`, as used in the example above - and the action itself runs from a prebuilt image on GHCR, so there's no build step on every CI run.
 
 I also added an `-emf` flag that, alongside the raw logs, emits [CloudWatch EMF](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Embedded_Metric_Format.html) events per job - job count, failures, and duration - so you get workflow metrics and dashboards for free, without a separate metrics pipeline.
 
