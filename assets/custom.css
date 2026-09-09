@@ -1,0 +1,7 @@
+/* Remove the decorative backticks Tailwind Typography adds around inline code.
+   !important is required: Typography's rule boosts specificity via :not(#\#)
+   repeated four times, which a plain override can't outweigh. */
+.prose code::before,
+.prose code::after {
+  content: none !important;
+}
