@@ -69,13 +69,7 @@ input[type='search'],
 
 body > header > div > a {
   font-size: 1.25rem !important;
-  text-transform: lowercase;
   color: var(--accent) !important;
-}
-
-body > header > div > a::before {
-  content: '$ ';
-  opacity: 0.6;
 }
 
 .nav-wrapper nav:first-child a {
