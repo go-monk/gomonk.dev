@@ -13,12 +13,15 @@ theme = 'paper'
 
   favicon = "favicon.png"           # customize the default favicon
   appleTouchIcon = "favicon.png"    # customize the default Apple touch icon
+  disableHLJS = true                # Hugo's chroma already highlights at build time
 
 [caches]
   [caches.images]
     dir = ':cacheDir/images'
 
 [markup]
+  [markup.highlight]
+    noClasses = false               # code colours come from assets/custom.css
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
