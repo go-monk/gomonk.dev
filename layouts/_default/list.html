@@ -71,7 +71,7 @@ $paginator.Pages -}}<!---->
   {{- end -}}
   <h2 class="my-0!">{{- .Title -}}</h2>
   <!-- data-mode: `l` (a link to code living elsewhere) for authored pages, i.e.
-       collectables, else `-`; x bits when the page holds a runnable program;
+       collectables, and pages with `link = true` in front matter, else `-`; x bits when the page holds a runnable program;
        group w when somebody has commented (group, not world, because
        commenting needs a GitHub login).
        ponytail: naive heuristic (a main func or shebang at line start); set
@@ -86,7 +86,7 @@ $paginator.Pages -}}<!---->
   {{- if index $commented (strings.TrimPrefix `/` .RelPermalink) -}}{{- $gw = `w` -}}{{- end }}
   <time
     class="text-xs antialiased opacity-60"
-    data-mode="{{- if .Params.author -}}l{{- else -}}-{{- end -}}rw{{- $x -}}r{{- $gw -}}{{- $x -}}r-{{- $x -}}"
+    data-mode="{{- if .Params.link | default .Params.author -}}l{{- else -}}-{{- end -}}rw{{- $x -}}r{{- $gw -}}{{- $x -}}r-{{- $x -}}"
     data-owner="{{- index (last 1 (split (.Params.author | default `monk`) ` `)) 0 | lower | printf `%-7s` -}}"
     data-group="{{- $lang := `text` -}}{{- with findRESubmatch "```(\\w+)" .RawContent 1 -}}{{- $lang = index . 0 1 -}}{{- end -}}{{- printf ` %-4s` $lang -}}"
     data-links="{{- len (findRE `<a\s[^>]*href="[^#]` .Content) | printf `%2d` -}}"

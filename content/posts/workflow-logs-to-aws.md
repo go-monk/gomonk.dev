@@ -1,6 +1,7 @@
 +++
 date = '2026-09-02T12:05:33+02:00'
 title = 'Push GitHub Actions logs to CloudWatch'
+link = true # the code lives in its own repo
 +++
 
 GitHub keeps workflow run logs for 90 days by default, then deletes them. If you need to keep them longer - for audits, incident postmortems, or just peace of mind - you have to ship them somewhere else yourself. So I wrote [workflow-logs-to-aws](https://github.com/go-monk/workflow-logs-to-aws), a small Go CLI and GitHub Action that pushes job logs from a workflow run into AWS CloudWatch Logs.

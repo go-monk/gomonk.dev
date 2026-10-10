@@ -1,6 +1,7 @@
 +++
 date = '2026-09-09T11:23:06+02:00'
 title = 'AWS configuration sources'
+link = true # the code lives in its own repo
 runnable = false # the main func is a sketch with elisions
 +++
 

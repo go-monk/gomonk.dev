@@ -1,5 +1,6 @@
 +++
 date = '2026-09-02T08:23:24+02:00'
+runnable = true # the main package under ./cmd isn't shown
 title = 'Shift cipher in Go'
 +++
 
