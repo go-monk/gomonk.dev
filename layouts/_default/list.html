@@ -77,7 +77,7 @@ $paginator.Pages -}}<!---->
        ponytail: naive heuristic (a main func or shebang at line start); set
        `runnable = true/false` in front matter where it guesses wrong.
        data-owner: author's surname (monk when unset), data-group: language of
-       the first code block (text when there is none),
+       the first code block (text when there is none), or `group` in front matter,
        data-links: hyperlinks in the post (footnote jumps excluded),
        data-size: source file bytes; all printed by the `ls -l` rule in custom.css -->
   {{- $x := `-` -}}
@@ -88,7 +88,7 @@ $paginator.Pages -}}<!---->
     class="text-xs antialiased opacity-60"
     data-mode="{{- if .Params.link | default .Params.author -}}l{{- else -}}-{{- end -}}rw{{- $x -}}r{{- $gw -}}{{- $x -}}r-{{- $x -}}"
     data-owner="{{- index (last 1 (split (.Params.author | default `monk`) ` `)) 0 | lower | printf `%-7s` -}}"
-    data-group="{{- $lang := `text` -}}{{- with findRESubmatch "```(\\w+)" .RawContent 1 -}}{{- $lang = index . 0 1 -}}{{- end -}}{{- printf ` %-4s` $lang -}}"
+    data-group="{{- $lang := `text` -}}{{- with findRESubmatch "```(\\w+)" .RawContent 1 -}}{{- $lang = index . 0 1 -}}{{- end -}}{{- printf ` %-4s` (.Params.group | default $lang) -}}"
     data-links="{{- len (findRE `<a\s[^>]*href="[^#]` .Content) | printf `%2d` -}}"
     data-size="{{- with .File -}}{{- (os.Stat (path.Join `content` .Path)).Size | printf `%5d` -}}{{- end -}}"
     >{{- .Date | time.Format ":date_medium" -}}</time
