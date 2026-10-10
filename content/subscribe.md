@@ -1,5 +1,6 @@
 +++
 title = 'Subscribe'
+layout = 'bare'
 comments = false
 +++
 

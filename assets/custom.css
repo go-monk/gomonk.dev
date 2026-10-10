@@ -75,15 +75,22 @@ input[type='search'],
 
 body > header > div > a {
   font-size: 1.25rem !important;
-  color: var(--accent) !important;
 }
 
 .nav-wrapper nav:first-child a {
   text-transform: lowercase;
 }
 
-.nav-wrapper nav:first-child a:hover {
-  color: var(--accent);
+body > header > div > a:hover,
+.nav-wrapper nav:first-child a:hover,
+body > header a[aria-current] {
+  color: var(--accent) !important;
+}
+
+/* underlined too: by day oxblood on ink is too close to tell apart */
+body > header a[aria-current] {
+  text-decoration: underline;
+  text-underline-offset: 0.4em;
 }
 
 /* home: post dates read like `ls -l` */
