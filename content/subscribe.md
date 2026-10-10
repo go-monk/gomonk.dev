@@ -1,5 +1,6 @@
 +++
 title = 'Subscribe'
+comments = false
 +++
 
 Subscribe to the newsletter and you'll get download links for a practical guide to transition from Bash to Go.

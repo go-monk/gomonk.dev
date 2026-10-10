@@ -19,6 +19,8 @@ theme = 'paper'
 [caches]
   [caches.images]
     dir = ':cacheDir/images'
+  [caches.getresource]
+    maxAge = '10m'                  # comment counts for the listing; the default never refetches
 
 [markup]
   [markup.highlight]

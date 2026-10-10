@@ -11,6 +11,21 @@
 {{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections -}}<!---->
 {{- end -}}
 
+<!-- Pages that already have giscus comments, keyed by discussion title (the
+     page's pathname). Fetched at build time, so it is as fresh as the last
+     build; if GitHub can't be reached no page is marked.
+     ponytail: first 100 discussions only, paginate when there are more. -->
+{{- $commented := dict -}}<!---->
+{{- with site.Params.giscus.repo -}}<!---->
+{{- with try (resources.GetRemote (printf "https://api.github.com/repos/%s/discussions?per_page=100" .)) -}}<!---->
+{{- with .Value -}}<!---->
+{{- range transform.Unmarshal . -}}<!---->
+{{- if gt .comments 0 -}}{{- $commented = merge $commented (dict .title true) -}}{{- end -}}<!---->
+{{- end -}}<!---->
+{{- end -}}<!---->
+{{- end -}}<!---->
+{{- end -}}
+
 <!-- Articles -->
 {{- $paginator := .Paginate $pages -}} {{- range $index, $page :=
 $paginator.Pages -}}<!---->
@@ -56,7 +71,9 @@ $paginator.Pages -}}<!---->
   {{- end -}}
   <h2 class="my-0!">{{- .Title -}}</h2>
   <!-- data-mode: `l` (a link to code living elsewhere) for authored pages, i.e.
-       collectables, else `-`; x bits when the page holds a runnable program.
+       collectables, else `-`; x bits when the page holds a runnable program;
+       group w when somebody has commented (group, not world, because
+       commenting needs a GitHub login).
        ponytail: naive heuristic (a main func or shebang at line start); set
        `runnable = true/false` in front matter where it guesses wrong.
        data-owner: author's surname (monk when unset), data-group: language of
@@ -65,9 +82,11 @@ $paginator.Pages -}}<!---->
        data-size: source file bytes; all printed by the `ls -l` rule in custom.css -->
   {{- $x := `-` -}}
   {{- if .Params.runnable | default (findRE `(?m)^(func main\(|#!)` .RawContent 1) -}}{{- $x = `x` -}}{{- end }}
+  {{- $gw := `-` -}}
+  {{- if index $commented (strings.TrimPrefix `/` .RelPermalink) -}}{{- $gw = `w` -}}{{- end }}
   <time
     class="text-xs antialiased opacity-60"
-    data-mode="{{- if .Params.author -}}l{{- else -}}-{{- end -}}rw{{- $x -}}r-{{- $x -}}r-{{- $x -}}"
+    data-mode="{{- if .Params.author -}}l{{- else -}}-{{- end -}}rw{{- $x -}}r{{- $gw -}}{{- $x -}}r-{{- $x -}}"
     data-owner="{{- index (last 1 (split (.Params.author | default `monk`) ` `)) 0 | lower | printf `%-7s` -}}"
     data-group="{{- $lang := `text` -}}{{- with findRESubmatch "```(\\w+)" .RawContent 1 -}}{{- $lang = index . 0 1 -}}{{- end -}}{{- printf ` %-4s` $lang -}}"
     data-links="{{- len (findRE `<a\s[^>]*href="[^#]` .Content) | printf `%2d` -}}"
