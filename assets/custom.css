@@ -82,7 +82,7 @@ body > header > div > a {
 
 /* home: post dates read like `ls -l` */
 main > section > time::before {
-  content: '-rw-r--r--  1 monk  ';
+  content: '-rw-r--r-- ' attr(data-links) ' monk  ' attr(data-size) '  ';
   white-space: pre;
 }
 
