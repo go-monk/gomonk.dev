@@ -1,7 +1,7 @@
 +++
 date = '2015-10-28'
 author = 'Alan Donovan'
-title = 'Spinner'
+title = 'spinner'
 +++
 
 One `go` statement keeps a terminal spinner turning while `main` grinds through a slow computation. Nobody stops the spinner; when `main` returns, the program ends and takes it along.
