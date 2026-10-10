@@ -1,6 +1,6 @@
 +++
 date = '2026-09-02T12:05:33+02:00'
-title = 'Push GitHub Actions logs to CloudWatch'
+title = 'Push GitHub logs to AWS'
 link = true # the code lives in its own repo
 +++
 
