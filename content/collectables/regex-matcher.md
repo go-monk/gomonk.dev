@@ -6,6 +6,10 @@ title = 'A regular expression matcher'
 
 Thirty lines of C that handle `c`, `.`, `^`, `$` and `*`. Rob Pike wrote them in an hour or two for *The Practice of Programming*; three small functions, and the recursion does all the work.
 
+Brian Kernighan, his co-author, picked it as his example of beautiful code:
+
+> Rob's implementation itself is a superb example of beautiful code: compact, elegant, efficient, and useful. It's one of the best examples of recursion that I have ever seen, and it shows the power of C pointers.
+
 ```c
 /* match: search for regexp anywhere in text */
 int match(char *regexp, char *text)

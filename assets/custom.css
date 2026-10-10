@@ -6,6 +6,12 @@
   content: none !important;
 }
 
+/* Same for the quotation marks it wraps around blockquotes. */
+.prose blockquote p::before,
+.prose blockquote p::after {
+  content: none !important;
+}
+
 /* ---------------------------------------------------------------------------
    Look: a PDP-11 parked in C.S. Lewis's study.
    Reading matter (headings, body) is set like an old book; everything the
