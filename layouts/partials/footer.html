@@ -8,3 +8,25 @@
     {{- end -}}
   </div>
 </footer>
+
+<!-- giscus follows the OS colour scheme; make it follow the site's dark toggle -->
+<script>
+  (function () {
+    function sync() {
+      var frame = document.querySelector('iframe.giscus-frame');
+      if (!frame) return;
+      var dark = document.documentElement.classList.contains('dark');
+      frame.contentWindow.postMessage(
+        { giscus: { setConfig: { theme: dark ? 'transparent_dark' : 'light' } } },
+        'https://giscus.app',
+      );
+    }
+    new MutationObserver(sync).observe(document.documentElement, {
+      attributeFilter: ['class'],
+    });
+    // giscus posts a message once its iframe is up (it loads lazily)
+    window.addEventListener('message', function (e) {
+      if (e.origin === 'https://giscus.app') sync();
+    });
+  })();
+</script>

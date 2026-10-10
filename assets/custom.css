@@ -196,3 +196,9 @@ article > section > p:first-child::first-letter {
 .nav-wrapper nav:last-child a:hover {
   background: var(--accent) !important;
 }
+
+/* Substack's embed is cross-origin and always white; in dark mode invert it
+   (hue-rotate keeps the orange button orange) rather than leave a white slab */
+.dark iframe[src*='substack.com'] {
+  filter: invert(0.91) hue-rotate(180deg);
+}
