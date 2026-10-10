@@ -15,4 +15,4 @@ SAFETY and SECURITY. Go is a relatively young language designed with modern safe
 
 OPTIMIZED for SDLC. Go improves the whole SDLC since it's not just a language but also a toolchain (`go mod tidy`, `go test`, `govulncheck`) and an ecosystem of [packages](https://pkg.go.dev/) (libraries).
 
-And several of these advantages are even more important in the [AI-assisted](https://spf13.com/p/go-the-agentic-language/) development. 
+And several of these advantages are even more important in the AI-assisted development ([Google](https://developers.googleblog.com/why-go-is-an-ideal-language-for-ai-assisted-software-engineering/), [spf13](https://spf13.com/p/go-the-agentic-language/)).
