@@ -21,4 +21,4 @@ for (@ARGV) {
 }
 ```
 
-Source: [eg/rename in the Perl distribution](https://github.com/Perl/perl5/blob/perl-5.003/eg/rename)
+Source: [eg/rename](https://github.com/Perl/perl5/blob/perl-5.003/eg/rename) in the Perl distribution.

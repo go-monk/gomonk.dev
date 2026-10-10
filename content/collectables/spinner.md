@@ -11,7 +11,7 @@ func main() {
 	go spinner(100 * time.Millisecond)
 	const n = 45
 	fibN := fib(n) // slow
-	fmt.Printf("\rFibonacci(%d) = %d\n", n, fibN)
+	fmt.Printf("\rfib(%d) = %d\n", n, fibN)
 }
 
 func spinner(delay time.Duration) {
@@ -31,4 +31,4 @@ func fib(x int) int {
 }
 ```
 
-Source: [gopl.io/ch8/spinner](https://github.com/adonovan/gopl.io/blob/master/ch8/spinner/main.go) from *The Go Programming Language* by Alan Donovan and Brian Kernighan, licensed [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+Source: [gopl.io/ch8/spinner](https://github.com/adonovan/gopl.io/blob/master/ch8/spinner/main.go) from *The Go Programming Language* by Alan Donovan and Brian Kernighan.

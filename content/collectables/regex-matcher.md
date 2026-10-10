@@ -4,7 +4,7 @@ author = 'Rob Pike'
 title = 'A regular expression matcher'
 +++
 
-Thirty lines of C that handle `c`, `.`, `^`, `$` and `*`. Rob Pike wrote them in an hour or two for *The Practice of Programming*; three small functions, and the recursion does all the work.
+Thirty lines of C that match a small but useful subset of regular expressions: `c` (literal characters), `.` (any character), `^` and `$` (start and end of the text) and `*` (zero or more of the previous character). Rob Pike wrote them in an hour or two for *The Practice of Programming*; three small functions, and the recursion does all the work.
 
 Brian Kernighan, his co-author, picked it as his example of beautiful code:
 
@@ -48,4 +48,4 @@ int matchstar(int c, char *regexp, char *text)
 }
 ```
 
-Source: [Brian Kernighan, "A Regular Expression Matcher"](https://www.cs.princeton.edu/courses/archive/spr09/cos333/beautiful.html) (code by Rob Pike)
+Source: [A Regular Expression Matcher](https://www.cs.princeton.edu/courses/archive/spr09/cos333/beautiful.html) by Brian Kernighan (code by Rob Pike).

@@ -1,7 +1,7 @@
 +++
 date = '1988-02-01'
 author = 'Bill Bryant'
-title = 'Designing an Authentication System'
+title = 'Designing an authentication system'
 +++
 
 Not code, but a design. Two developers argue their way to Kerberos one objection at a time: every scene opens with a hole in the previous scene's scheme and closes with the fix. By the end you know not just how tickets and authenticators work but why each piece has to be there.
@@ -19,4 +19,4 @@ Not code, but a design. Two developers argue their way to Kerberos one objection
 >
 > **Euripides:** Don't complain to me. I only work here.
 
-Source: [Designing an Authentication System: a Dialogue in Four Scenes](https://web.mit.edu/kerberos/dialogue.html) by Bill Bryant, February 1988; cleaned up and extended with an afterword by Theodore Ts'o, 1997
+Source: [Designing an Authentication System: a Dialogue in Four Scenes](https://web.mit.edu/kerberos/dialogue.html) by Bill Bryant, February 1988; cleaned up and extended with an afterword by Theodore Ts'o, 1997.
