@@ -82,8 +82,15 @@ body > header > div > a {
 
 /* home: post dates read like `ls -l` */
 main > section > time::before {
-  content: '-rw-r--r-- ' attr(data-links) ' monk  ' attr(data-size) '  ';
+  content: attr(data-mode) ' ' attr(data-links) ' ' attr(data-owner) attr(data-group) '  ' attr(data-size) '  ';
   white-space: pre;
+}
+
+/* phones: drop the permission bits so the row fits on one line */
+@media (max-width: 640px) {
+  main > section > time::before {
+    content: attr(data-links) ' ' attr(data-owner) attr(data-group) '  ' attr(data-size) '  ';
+  }
 }
 
 main > section:hover > h2 {

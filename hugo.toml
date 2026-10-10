@@ -5,6 +5,7 @@ theme = 'paper'
 
 [params]
   description = 'Go programming, infrastructure and security'
+  mainSections = ['posts']          # home lists posts only; without this Hugo picks the biggest section
 
   # header social icons
   github = 'go-monk'                # github.com/YOUR_GITHUB_ID
@@ -30,6 +31,11 @@ theme = 'paper'
   home = ["HTML", "RSS", "JSON"]
 
 [menu]
+  [[menu.main]]
+    identifier = "collectables"
+    name = "Collectables"
+    url = "/collectables/"
+    weight = 1
   [[menu.main]]
     identifier = "search"
     name = "Search"

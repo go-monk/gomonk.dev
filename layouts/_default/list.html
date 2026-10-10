@@ -55,10 +55,21 @@ $paginator.Pages -}}<!---->
   >
   {{- end -}}
   <h2 class="my-0!">{{- .Title -}}</h2>
-  <!-- data-links: hyperlinks in the post (footnote jumps excluded), data-size: source file bytes;
-       both printed by the `ls -l` rule in custom.css -->
+  <!-- data-mode: `l` (a link to code living elsewhere) for authored pages, i.e.
+       collectables, else `-`; x bits when the page holds a runnable program.
+       ponytail: naive heuristic (a main func or shebang at line start); set
+       `runnable = true/false` in front matter where it guesses wrong.
+       data-owner: author's surname (monk when unset), data-group: language of
+       the first code block (text when there is none),
+       data-links: hyperlinks in the post (footnote jumps excluded),
+       data-size: source file bytes; all printed by the `ls -l` rule in custom.css -->
+  {{- $x := `-` -}}
+  {{- if .Params.runnable | default (findRE `(?m)^(func main\(|#!)` .RawContent 1) -}}{{- $x = `x` -}}{{- end }}
   <time
     class="text-xs antialiased opacity-60"
+    data-mode="{{- if .Params.author -}}l{{- else -}}-{{- end -}}rw{{- $x -}}r-{{- $x -}}r-{{- $x -}}"
+    data-owner="{{- index (last 1 (split (.Params.author | default `monk`) ` `)) 0 | lower | printf `%-7s` -}}"
+    data-group="{{- $lang := `text` -}}{{- with findRESubmatch "```(\\w+)" .RawContent 1 -}}{{- $lang = index . 0 1 -}}{{- end -}}{{- printf ` %-4s` $lang -}}"
     data-links="{{- len (findRE `<a\s[^>]*href="[^#]` .Content) | printf `%2d` -}}"
     data-size="{{- with .File -}}{{- (os.Stat (path.Join `content` .Path)).Size | printf `%5d` -}}{{- end -}}"
     >{{- .Date | time.Format ":date_medium" -}}</time
