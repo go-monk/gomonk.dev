@@ -13,6 +13,6 @@ CROSS-COMPILATION to a SINGLE BINARY. Go makes it easy to build (statically link
 
 SAFETY and SECURITY. Go is a relatively young language designed with modern safety and security concerns in mind. This is less true of languages created in a much earlier era when the security landscape was very different.
 
-OPTIMIZED for SDLC. Go improves the whole SDLC since it's not just a language but also a toolchain (`go mod tidy`, `go test`, `govulncheck`) and an ecosystem of [packages](https://pkg.go.dev/) (libraries).
+OPTIMIZED for SDLC. Go improves the whole software development life cycle (SDLC) since it's not just a language but also a toolchain (`go mod tidy`, `go test`, `govulncheck`) and an ecosystem of [packages](https://pkg.go.dev/) (libraries).
 
-And several of these advantages are even more important in the AI-assisted development ([Google](https://developers.googleblog.com/why-go-is-an-ideal-language-for-ai-assisted-software-engineering/), [spf13](https://spf13.com/p/go-the-agentic-language/)).
+And several of these advantages are even more important in AI-assisted development. Simple, uniformly formatted code is easier to review when a model wrote it. The compatibility promise means that what a model learned about Go years ago still holds. And fast builds and built-in tests give an agent quick feedback on its own mistakes. [Google](https://developers.googleblog.com/why-go-is-an-ideal-language-for-ai-assisted-software-engineering/) and [spf13](https://spf13.com/p/go-the-agentic-language/) make the case in more detail.

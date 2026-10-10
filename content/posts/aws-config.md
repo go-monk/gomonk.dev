@@ -5,7 +5,9 @@ link = true # the code lives in its own repo
 runnable = false # the main func is a sketch with elisions
 +++
 
-When talking to AWS from a Go program the easiest way is to use the [AWS SDK](https://github.com/aws/aws-sdk-go-v2). Say you want to list the S3 buckets. The program would look something like:
+The [AWS SDK](https://github.com/aws/aws-sdk-go-v2) for Go takes its configuration, such as the region, from three places: your code, environment variables and files in `~/.aws/`. When they disagree, the code wins over the environment and the environment wins over the files. Here is how to see that for yourself.
+
+Say you want to list the S3 buckets. The program would look something like:
 
 ```go
 package main
@@ -76,7 +78,9 @@ SOURCE  TYPE                 REGION
 3       config.SharedConfig  us-east-2
 ```
 
-In the table above you can see the three types of configuration sources and the region configuration value. The us-east-1 region is hardcoded inside the program by virtue of the `config.WithRegion` option, eu-central-1 comes from the `AWS_REGION` environment variable and us-east-2 from the default profile in the `~/.aws/config` file:
+In the table above you can see the three types of configuration sources and the region configuration value. The us-east-1 region is hardcoded inside the program by virtue of the `config.WithRegion` option, eu-central-1 comes from the `AWS_REGION` environment variable and us-east-2 from the default profile in the `~/.aws/config` file. The sources are listed in order of precedence: the first one that sets a value wins, so this program talks to us-east-1.
+
+Here is that `config` file:
 
 ```
 # cat ~/.aws/config 
