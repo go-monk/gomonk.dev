@@ -115,8 +115,27 @@ article > footer > a {
   color: var(--amber) !important;
 }
 
+/* the theme's prebuilt CSS lacks the spacing and border utilities the search
+   page would need, so they are spelled out here */
 input[type='search'] {
-  border-color: var(--rule) !important;
+  border: 1px solid var(--rule) !important;
+  padding: 0.625rem 1rem !important;
+  background: transparent !important;
+}
+
+input[type='search']:focus {
+  border-color: var(--accent) !important;
+  outline: none !important;
+}
+
+#search-status {
+  margin-top: 1rem !important;
+}
+
+#search-results {
+  margin-top: 0.5rem !important;
+  padding: 0 !important;
+  list-style: none !important;
 }
 
 /* --- reading matter -------------------------------------------------------- */
