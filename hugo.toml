@@ -5,6 +5,7 @@ theme = 'paper'
 
 [params]
   description = 'Go programming, infrastructure and security'
+  mainSections = ['posts']          # home lists posts only; without this Hugo picks the biggest section
 
   # header social icons
   github = 'go-monk'                # github.com/YOUR_GITHUB_ID
@@ -13,12 +14,17 @@ theme = 'paper'
 
   favicon = "favicon.png"           # customize the default favicon
   appleTouchIcon = "favicon.png"    # customize the default Apple touch icon
+  disableHLJS = true                # Hugo's chroma already highlights at build time
 
 [caches]
   [caches.images]
     dir = ':cacheDir/images'
+  [caches.getresource]
+    maxAge = '10m'                  # comment counts for the listing; the default never refetches
 
 [markup]
+  [markup.highlight]
+    noClasses = false               # code colours come from assets/custom.css
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
@@ -27,6 +33,11 @@ theme = 'paper'
   home = ["HTML", "RSS", "JSON"]
 
 [menu]
+  [[menu.main]]
+    identifier = "collectables"
+    name = "Collectables"
+    url = "/collectables/"
+    weight = 1
   [[menu.main]]
     identifier = "search"
     name = "Search"

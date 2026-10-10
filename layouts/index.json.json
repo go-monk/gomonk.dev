@@ -1,4 +1,5 @@
-{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections -}}
+{{- /* every page that lives in a section (posts, collectables); skips search, subscribe */ -}}
+{{- $pages := where site.RegularPages "Section" "ne" "" -}}
 {{- $data := slice -}}
 {{- range $pages -}}
 {{- $data = $data | append (dict

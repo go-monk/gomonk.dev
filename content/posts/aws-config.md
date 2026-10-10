@@ -1,6 +1,7 @@
 +++
 date = '2026-09-09T11:23:06+02:00'
 title = 'AWS configuration sources'
+runnable = false # the main func is a sketch with elisions
 +++
 
 When talking to AWS from a Go program the easiest way is to use the [AWS SDK](https://github.com/aws/aws-sdk-go-v2). Say you want to list the S3 buckets. The program would look something like:
