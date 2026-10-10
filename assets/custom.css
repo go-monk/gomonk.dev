@@ -92,11 +92,11 @@ main > section > time::before {
   white-space: pre;
 }
 
-/* phones: drop the permission bits so the row fits on one line */
-@media (max-width: 640px) {
-  main > section > time::before {
-    content: attr(data-links) ' ' attr(data-owner) attr(data-group) '  ' attr(data-size) '  ';
-  }
+/* phones: shrink the row rather than drop columns, so it stays a full `ls -l`
+   on home and collectables alike. 28.5 = 47 chars x 0.6em glyph width; 4rem =
+   main's side padding. */
+main > section > time {
+  font-size: min(0.75rem, calc((100vw - 4rem) / 28.5)) !important;
 }
 
 main > section:hover > h2 {
