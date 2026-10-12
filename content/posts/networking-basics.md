@@ -5,7 +5,7 @@ group = 'net' # no code here, only protocol diagrams
 title = 'Networking basics'
 +++
 
-This is my cheat sheet on how data gets from one program to another over a network: the layering models, IP, TCP and UDP. It is mostly diagrams and lists, the things I keep looking up, such as what is in a TCP header or which steps a router takes with a packet. I wrote it while reading Wendell Odom's CCNA book.
+This is my cheat sheet on how data gets from one program to another over a network: the layering models, IP, TCP and UDP. It is mostly diagrams and lists, the things I keep looking up, such as what is in a TCP header or which steps a router takes with a packet.
 
 ## Networking models
 
@@ -18,23 +18,23 @@ A networking model splits the job of communicating into layers with standard int
 OSI and TCP/IP models:
 
 ```
-       OSI              TCP/IP             TCP/IP             Sample
-                        original           updated            protocol
-  +------------+     +------------+     +------------+     +----------------+ The "language" that
-7 |Application |     |            |     |            |     |Telnet HTTP     | apps and servers use
-  |------------+     |            |     |            |     |FTP SMTP        | to communicate.
-6 |Presentation|     |Application | 5-7 |Application |     |POP3 VoIP       |
-  |------------+     |            |     |            |     |SNMP DNS Halo 3 |
-5 |Session     |     |            |     |            |     |arp traceroute  |
-  |------------+- - -+------------+- - -+------------+- - -+----------------+ Data transmission
-4 |Transport   |     |Transport   |  4  |Transport   |     |TCP UDP         | characteristics.
-  |------------+- - -+------------+- - -+------------+- - -+----------------+ How to move packets
-3 |Network     |     |Internetwork|  3  |Internetwork|     |IP ICMP         | from src to dst.
-  |------------+- - -+------------+- - -+------------+- - -+----------------+
-2 |Data link   |     |Network     |  2  |Data link   |     |Eth HDLC PPP ARP|
-  |------------+     |            |- - -|------------|- - -|----------------| How to send raw data
-1 |Physical    |     |access      |  1  |Physical    |     |Eth RJ-45 V.35  | across a physical medium.
-  +------------+     +------------+     +------------+     +----------------+
+       OSI              TCP/IP               Sample
+                        (updated)            protocol
+  +------------+     +------------+     +----------------+ The "language" that
+7 |Application |     |            |     |Telnet HTTP     | apps and servers use
+  |------------+     |            |     |FTP SMTP        | to communicate.
+6 |Presentation| 5-7 |Application |     |POP3 VoIP       |
+  |------------+     |            |     |SNMP DNS Halo 3 |
+5 |Session     |     |            |     |arp traceroute  |
+  |------------+- - -+------------+- - -+----------------+ Data transmission
+4 |Transport   |  4  |Transport   |     |TCP UDP         | characteristics.
+  |------------+- - -+------------+- - -+----------------+ How to move packets
+3 |Network     |  3  |Internetwork|     |IP ICMP         | from src to dst.
+  |------------+- - -+------------+- - -+----------------+
+2 |Data link   |  2  |Data link   |     |Eth HDLC PPP ARP|
+  |------------+- - -|------------+- - -|----------------+ How to send raw data
+1 |Physical    |  1  |Physical    |     |Eth RJ-45 V.35  | across a physical medium.
+  +------------+     +------------+     +----------------+
 ```
 
 To remember the OSI layers from the bottom up: Please Do Not Throw Sausage Pizza Away. Layers are often called by number, so L2 is the data link layer and L3 the network layer.
