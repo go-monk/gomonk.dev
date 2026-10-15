@@ -1,14 +1,13 @@
 +++
 date = '2026-10-12T09:00:00+02:00'
-draft = true
 title = 'Watching the TCP handshake from Go'
 +++
 
-Every TCP connection starts with three segments going back and forth before any data is sent. `net.Dial` hides them: you call it and get a connection. This post is a 65-line Go program, standard library only, that connects to itself and prints those three segments as the kernel sends them. It needs Linux and root.
+Every TCP connection starts with three segments[^1] going back and forth before any data is sent. `net.Dial` hides them: you call it and get a connection. This post is a 74-line Go program, standard library only, that connects to itself and prints those three segments as the kernel sends them. It needs root on Linux, or Docker.
 
 ## The handshake
 
-TCP numbers the bytes it sends, so the receiver can put them in order and say which ones arrived. Before sending data, each side has to tell the other the number it starts counting from. That takes three segments (a segment is a TCP header plus data, here with no data), known as the three-way handshake:
+TCP numbers the bytes it sends, so the receiver can put them in order and say which ones arrived. Before sending data, each side has to tell the other the number it starts counting from[^2]. That takes three segments, known as the three-way handshake:
 
 ```
  +-------+             SEQ=200                 +------+
@@ -34,9 +33,9 @@ The acknowledgment number is the next sequence number the sender expects, which 
 
 The kernel does the handshake, a program normally sees only the result. To see the segments I open a raw socket. On Linux, a raw socket for protocol `tcp` gets a copy of every TCP segment arriving at its address, header included. In Go that's `net.ListenIP("ip4:tcp", ...)`, and it's the part that needs root.
 
-Then the program needs a connection to watch, so it listens on a free port on 127.0.0.1 and dials it. Both ends are on the loopback interface, where every segment is an arriving one, so the raw socket sees both directions.
+Then the program needs a connection to watch, so it listens on a free port on 127.0.0.1. The program also dials it, so it's running both a server and a client. Both ends are on the loopback interface, where every segment is an arriving one, so the raw socket sees both directions.
 
-What it reads is the TCP header. The fields I want sit at fixed offsets, all in big-endian byte order:
+What it reads is the TCP header. The fields I'm interested in sit at fixed offsets, all in big-endian byte order[^3]:
 
 ```
  0                   1                   2                   3
@@ -71,8 +70,12 @@ import (
 )
 
 func main() {
-	// A raw socket gets a copy of every TCP segment arriving at the address.
-	raw, err := net.ListenIP("ip4:tcp", &net.IPAddr{IP: net.IPv4(127, 0, 0, 1)})
+	// A raw socket gets a copy of every
+	// TCP segment arriving at the address.
+	raw, err := net.ListenIP(
+		"ip4:tcp",
+		&net.IPAddr{IP: net.IPv4(127, 0, 0, 1)},
+	)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -83,6 +86,7 @@ func main() {
 		log.Fatal(err)
 	}
 	defer server.Close()
+	// Get the port chosen by the kernel.
 	port := uint16(server.Addr().(*net.TCPAddr).Port)
 
 	client, err := net.Dial("tcp", server.Addr().String())
@@ -91,6 +95,7 @@ func main() {
 	}
 	defer client.Close()
 
+	// Plenty: a handshake segment is at most 60 bytes.
 	buf := make([]byte, 1500)
 	for seen := 0; seen < 3; {
 		n, _, err := raw.ReadFrom(buf)
@@ -108,16 +113,19 @@ func main() {
 		}
 		seq := binary.BigEndian.Uint32(seg[4:8])
 		ack := binary.BigEndian.Uint32(seg[8:12])
-		fmt.Printf("%5d -> %-5d %-8s SEQ=%d ACK=%d\n",
+		fmt.Printf(
+			"%5d -> %-5d %-8s SEQ=%d ACK=%d\n",
 			sport, dport, flags(seg[13]), seq, ack)
 		seen++
 	}
 }
 
-// flags names the bits set in the flags byte of a TCP header.
+// flags gives human-readable names to the bits
+// set in the flags byte of a TCP header.
 func flags(b byte) string {
 	var names []string
-	for i, name := range []string{"FIN", "SYN", "RST", "PSH", "ACK", "URG"} {
+	all := []string{"FIN", "SYN", "RST", "PSH", "ACK", "URG"}
+	for i, name := range all {
 		if b&(1<<i) != 0 {
 			names = append(names, name)
 		}
@@ -150,7 +158,7 @@ The starting numbers aren't 200 and 1450, and they differ on every run. The kern
 
 ## Limits
 
-This works only when the program talks to itself. A raw socket gets the segments that arrive, not the ones that leave. When I pointed the dial at example.com, the program saw one segment, the server's SYN,ACK. To watch both directions of a real connection you need a packet capture tool such as `tcpdump`.
+This works only when the program talks to itself. A raw socket gets the segments that arrive, not the ones that leave. To watch both directions of a real connection you need a packet capture tool such as `tcpdump`.
 
 Without root the first call fails:
 
@@ -162,3 +170,7 @@ listen ip4:tcp 127.0.0.1: socket: operation not permitted
 
 * [RFC 793 - TCP](https://www.rfc-editor.org/rfc/rfc793), section 3.4 on establishing a connection
 * [raw(7)](https://man7.org/linux/man-pages/man7/raw.7.html), the Linux manual page on raw sockets
+
+[^1]: A segment is a TCP header plus data, TCP's unit of transfer. The handshake segments carry no data.
+[^2]: On a real network the starting numbers are much bigger than the 200 and 1450 used below.
+[^3]: Big-endian means the most significant byte comes first, the same left-to-right order you read the number in. So the 16-bit port 443 (0x01BB) goes over the wire as 0x01 then 0xBB. Network protocols use big-endian order, which is why it is also called network byte order. x86 and most ARM systems are little-endian: they store the least significant byte first.
